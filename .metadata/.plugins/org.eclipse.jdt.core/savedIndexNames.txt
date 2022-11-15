@@ -1,0 +1,8 @@
+INDEX VERSION 1.131+/Users/uk/Coding/Project/JSP/.metadata/.plugins/org.eclipse.jdt.core
+3184578770.index
+2843903875.index
+1404793340.index
+2355434399.index
+243266594.index
+2084897896.index
+1865797976.index

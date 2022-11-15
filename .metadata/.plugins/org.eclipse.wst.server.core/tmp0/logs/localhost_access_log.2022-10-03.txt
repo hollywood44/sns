@@ -1,0 +1,12 @@
+127.0.0.1 - - [03/Oct/2022:21:30:37 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:21:30:39 +0900] "GET /sns/Home/Write.jsp HTTP/1.1" 200 3754
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:21:30:39 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:21:30:45 +0900] "POST /sns/controller/saveImage HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:21:30:51 +0900] "POST /sns/controller/saveImage HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:21:30:54 +0900] "POST /sns/controller/saveImage HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2022:23:32:08 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:23:32:09 +0900] "GET /sns/Home/Write.jsp HTTP/1.1" 200 3754
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:23:32:09 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:23:32:29 +0900] "POST /sns/controller/saveImage HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:23:56:17 +0900] "GET /sns/Home/Write.jsp HTTP/1.1" 200 3754
+0:0:0:0:0:0:0:1 - - [03/Oct/2022:23:56:22 +0900] "POST /sns/controller/saveImage HTTP/1.1" 200 -

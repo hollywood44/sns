@@ -1,0 +1,128 @@
+package servlet;
+
+import java.io.IOException;
+import java.lang.reflect.Member;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import board.boardDAO;
+import comment.commentDAO;
+import member.memberDAO;
+import member.memberDTO;
+import member.memberDAO;
+
+@WebServlet("/one.do")
+public class Controller extends HttpServlet {
+	
+	public static String pageMove = null;
+	public HttpSession session;
+	
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 기능
+		String pageRoute = request.getParameter("pageRoute") == null ? null : request.getParameter("pageRoute");
+		// 보드아이디
+		String bid = request.getParameter("bid") == null ? null : request.getParameter("bid");
+		// 댓글관련 변수
+		String comment = request.getParameter("comment") == null ? null : request.getParameter("comment");
+		// 스크롤위치
+		String scroll = request.getParameter("scroll") == null ? null : request.getParameter("scroll");
+		// 댓글관련 변수
+		String commentDetail = request.getParameter("commentDetail") == null ? null : request.getParameter("commentDetail");
+		
+		// Home/Home.jsp - 게시물 조회
+		if (pageRoute.equals("selectBoard")) {
+			System.out.println("selectBoard로 왔다");
+			System.out.println("pageRoute : " + pageRoute);
+			System.out.println("bid : " + bid);
+			System.out.println("scroll : " + scroll);
+			System.out.println("comment : " + comment);
+			System.out.println("commentDetail : " + commentDetail);
+			selectBoard(request, response, scroll, bid, comment, commentDetail, pageRoute);
+		}
+		
+		// Home/Home.jsp - 게시물 상세 조회
+		else if (pageRoute.equals("selectBoardDetail")) {
+			selectBoardDetail(request, response, bid);
+		}
+		
+		// Home/Home.jsp - 게시물 좋아요 누가누가 조회
+		else if (pageRoute.equals("likeWho")) {
+			likeWho(request, response, scroll, bid);
+		}
+		
+
+		// Home/Home.jsp - 댓글 등록
+		else if (pageRoute.equals("insertComment")) {
+			System.out.println("insertComment로 왔다");
+			session = request.getSession();
+			session.setAttribute("scroll", scroll);
+			pageMove = "./Home/Home.jsp";
+			System.out.println("pageRoute : " + pageRoute);
+			System.out.println("bid : " + bid);
+			System.out.println("scroll : " + scroll);
+			System.out.println("comment : " + comment);
+			System.out.println("commentDetail : " + commentDetail);
+//			insertComment(request, response, scroll, bid, comment);
+		}
+		
+
+		// Login/Login.jsp - 로그인
+		else if (pageRoute.equals("login")) {
+			login(request, response);
+		}
+		
+		request.getRequestDispatcher(pageMove).forward(request, response);
+	}
+	
+	
+	
+	
+	//////////////////////////////
+	
+	
+	
+	
+	// Home/Home.jsp - 게시물 조회
+	public void selectBoard(HttpServletRequest request, HttpServletResponse response, String scroll, String bid, String comment, String commentDetail, String pageRoute) throws ServletException, IOException {
+		memberDAO mdao = new memberDAO();
+		mdao.selectBoard(request, response, scroll, bid, comment, commentDetail, pageRoute);
+		mdao.close();
+	}
+	
+	// Home/Home.jsp - 게시물 상세 조회
+	public void selectBoardDetail(HttpServletRequest request, HttpServletResponse response, String bid) throws ServletException, IOException {
+		memberDAO mdao = new memberDAO();
+		mdao.selectBoardDetail(request, response, bid);
+		mdao.close();
+	}
+	
+	
+	// Login/Login.jsp - 로그인
+	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		memberDAO mdao = new memberDAO();
+		mdao.login(request, response);
+		mdao.close();
+	}
+
+	// Home/Home.jsp - 게시물 좋아요 누가누가 조회
+	public void likeWho(HttpServletRequest request, HttpServletResponse response, String scroll, String bid) throws ServletException, IOException {
+		memberDAO mdao = new memberDAO();
+		mdao.likeWho(request, response, scroll, bid);
+		mdao.close();
+	}
+
+	// Home/Home.jsp - 댓글 등록
+	public void insertComment(HttpServletRequest request, HttpServletResponse response, String scroll, String bid, String comment) throws ServletException, IOException {
+		
+		memberDAO mdao = new memberDAO();
+		String commentDetail = request.getParameter("commentDetail");
+		mdao.insertComment(request, response, scroll, bid, comment, commentDetail);
+		mdao.close();
+	}
+}
